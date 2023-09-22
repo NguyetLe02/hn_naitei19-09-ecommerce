@@ -5,6 +5,7 @@ package com.example.ecommerce.model;
 import javax.persistence.*;
 
 import javax.persistence.*;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -39,6 +40,16 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+
+    public User(){
+    }
+
+    public User(String fullname, String email, String password, Role role) {
+        this.fullname = fullname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public Long getId() {
         return id;
