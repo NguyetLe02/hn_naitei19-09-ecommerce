@@ -2,6 +2,7 @@ package com.example.ecommerce.service.impl;
 
 import java.util.*;
 
+import com.example.ecommerce.DTO.UserLoginDto;
 import com.example.ecommerce.DTO.UserRegistrationDto;
 import com.example.ecommerce.dao.RoleRepository;
 import com.example.ecommerce.model.Role;
@@ -51,6 +52,20 @@ public class UserServiceImpl implements UserService {
             return userRepository.save(user);
         }else{
 
+            return null;
+        }
+    }
+
+    @Override
+    public User login(UserLoginDto loginDto) {
+        User existsUser = userRepository.findByEmail(loginDto.getEmail());
+        if(existsUser != null) {
+            if(loginDto.getPassword().equals(existsUser.getPassword())){
+                return existsUser;
+            }else{
+                return null;
+            }
+        }else{
             return null;
         }
     }

@@ -28,10 +28,17 @@
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>
                         </div>
-                        <a th:unless="${user!=null}" href="/login" class="btn btn-light">
-                            <i class="fa fa-user"></i> <span
-                                class="ms-1 d-none d-sm-inline-block">Sign in </span>
+                        <a th:if="${session.loggedInUser != null}" href="#" class="btn btn-light">
+                            <i class="fa fa-user"></i>
+                            <span class="ms-1 d-none d-sm-inline-block" th:text="${session.loggedInUser.fullname}"></span>
                         </a>
+                        <a th:unless="${session.loggedInUser != null}" href="/login" class="btn btn-light">
+                            <i class="fa fa-user"></i>
+                            <span class="ms-1 d-none d-sm-inline-block">Sign in</span>
+                        </a>
+
+
+
                         <button th:unless="${user!=null} and ${user.role == 'ROLE_ADMIN'}" data-bs-toggle="modal" data-bs-target="#cart-modal"
                                 class="btn btn-light">
                             <i class="fa fa-shopping-cart"></i> <span class="ms-1">My
